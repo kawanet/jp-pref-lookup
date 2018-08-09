@@ -1,4 +1,10 @@
-# Japan Prefecture Lookup / 10km mesh-based reverse geocoding
+# Japan Prefecture Lookup
+
+[![Build Status](https://travis-ci.org/kawanet/jp-pref-lookup.svg?branch=master)](https://travis-ci.org/kawanet/jp-pref-lookup)
+
+- JIS X 0401: To−Do−Fu−Ken (Prefecture) Identification Code
+- 10km mesh based reverse geocoding
+- [jp-pref-lookup.min.js](https://rawgit.com/kawanet/jp-pref-lookup/master/dist/jp-pref-lookup.min.js) is small: 20KB minified, 6KB gzipped.
 
 ### Synopsis
 
@@ -13,10 +19,27 @@ console.log(Pref.lookup({ll: "35.3606,138.7278"})); // => ["22", "19"]
 
 // name for prefecture code
 console.log(Pref.name("13")); // => "東京都"
+console.log(Pref.name(27)); // => "大阪府"
 
 // prefecture code for name
 console.log(Pref.code("東京都")); // => "13"
 console.log(Pref.code("大阪")); // => "27"
+```
+
+### Browser
+
+- This works with [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) on Web browsers.
+
+```html
+<script src="jp-pref-lookup.min.js"></script>
+<script>
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var ll = position.coords.latitude + "," + position.coords.longitude;
+    var array = Pref.lookup({ll: ll});
+    var name = array && Pref.name(array[0]);
+    alert(name);
+  });
+</script>
 ```
 
 ### GitHub
@@ -26,8 +49,8 @@ console.log(Pref.code("大阪")); // => "27"
 ### See Also
 
 - [http://www.stat.go.jp/data/mesh/m_itiran.html](http://www.stat.go.jp/data/mesh/m_itiran.html)
-- [http://kikakurui.com/x0/X0402-2010-01.html](http://kikakurui.com/x0/X0402-2010-01.html)
-- [https://github.com/kawanet/jp-pref-lookup](https://github.com/kawanet/jp-pref-lookup)
+- [http://kikakurui.com/x0/X0401-1973-01.html](http://kikakurui.com/x0/X0401-1973-01.html)
+- [https://github.com/kawanet/jp-city-lookup](https://github.com/kawanet/jp-city-lookup)
 
 ### The MIT License (MIT)
 
