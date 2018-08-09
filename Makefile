@@ -17,6 +17,7 @@ clean:
 test: all mocha
 
 $(MESH_JSON): $(MESH_SRC)
+	mkdir node_modules/jp-city-lookup/csv
 	node $(MESH_SRC) > $(MESH_JSON)
 
 $(MAIN_TMP): $(MAIN_SRC) $(MESH_JSON)

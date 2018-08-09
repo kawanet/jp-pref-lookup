@@ -1,15 +1,19 @@
 {
   "name": "jp-pref-lookup",
-  "description": "Japan Prefecture Lookup / 10km mesh-based reverse geocoding",
+  "description": "Japan Prefecture Lookup / 10km grid mesh reverse geocoding",
   "version": "0.1.0",
   "bugs": {
     "url": "https://github.com/kawanet/jp-pref-lookup/issues"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.5.6",
+    "@types/node": "^10.5.7",
+    "axios": "^0.18.0",
     "browserify": "^16.2.2",
+    "iconv-lite": "^0.4.23",
+    "jp-city-lookup": "^0.1.0",
     "mocha": "^5.2.0",
+    "promisen": "^0.1.1",
     "typescript": "^3.0.1",
     "uglify-js": "^3.4.6"
   },
