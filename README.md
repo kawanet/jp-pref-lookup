@@ -1,10 +1,10 @@
 # Japan Prefecture Lookup
 
-[![Build Status](https://travis-ci.org/kawanet/jp-pref-lookup.svg?branch=master)](https://travis-ci.org/kawanet/jp-pref-lookup)
+[![Build Status](https://travis-ci.org/kawanet/jp-pref-lookup.svg?branch=master)](https://travis-ci.org/kawanet/jp-pref-lookup) [![npm version](https://badge.fury.io/js/jp-pref-lookup.svg)](https://badge.fury.io/js/jp-pref-lookup)
 
 - JIS X 0401: To−Do−Fu−Ken (Prefecture) Identification Code
-- 10km mesh based reverse geocoding
-- [jp-pref-lookup.min.js](https://rawgit.com/kawanet/jp-pref-lookup/master/dist/jp-pref-lookup.min.js) is small: 20KB minified, 6KB gzipped.
+- Lookup: 10km grid mesh reverse geocoding
+- Standalone: [jp-pref-lookup.min.js](https://rawgit.com/kawanet/jp-pref-lookup/master/dist/jp-pref-lookup.min.js) is just 20KB minified, 6KB gzipped
 
 ### Synopsis
 
