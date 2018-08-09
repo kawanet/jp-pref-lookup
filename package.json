@@ -1,0 +1,35 @@
+{
+  "name": "jp-pref-lookup",
+  "description": "Japan Prefecture Lookup / 10km mesh-based reverse geocoding",
+  "version": "0.1.0",
+  "bugs": {
+    "url": "https://github.com/kawanet/jp-pref-lookup/issues"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.5.6",
+    "browserify": "^16.2.2",
+    "mocha": "^5.2.0",
+    "typescript": "^3.0.1",
+    "uglify-js": "^3.4.6"
+  },
+  "homepage": "https://github.com/kawanet/jp-pref-lookup#readme",
+  "keywords": [
+    "JIS-X-0401",
+    "geocoding"
+  ],
+  "license": "MIT",
+  "main": "./lib/jp-pref-lookup.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kawanet/jp-pref-lookup.git"
+  },
+  "scripts": {
+    "fixpack": "fixpack",
+    "test": "./node_modules/.bin/mocha test",
+    "tsc": "./node_modules/.bin/tsc",
+    "tsc-declaration": "./node_modules/.bin/tsc --declaration --emitDeclarationOnly --outDir typings lib/jp-pref-lookup.ts",
+    "tsc-watch": "./node_modules/.bin/tsc --watch"
+  },
+  "typings": "typings/jp-pref-lookup.d.ts"
+}

@@ -1,0 +1,9 @@
+*.browserify.js
+*~
+.DS_Store
+.Thumbs
+._*
+.idea
+node_modules
+npm-debug.log*
+tmp/

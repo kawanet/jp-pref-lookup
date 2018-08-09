@@ -1,0 +1,33 @@
+"use strict";
+
+import {Pref} from "../lib/jp-pref-lookup";
+
+const assert = require("assert");
+const FILE = __filename.split("/").pop();
+
+describe(FILE, () => {
+	it("lookup({mesh: 5339})", () => {
+		const list = Pref.lookup({mesh: "5339"});
+		assert(contains(list, "13"));
+	});
+
+	it("lookup({mesh: 533946})", () => {
+		const list = Pref.lookup({mesh: "533946"});
+		assert(contains(list, "13"));
+	});
+
+	it("lookup({mesh: 53393680})", () => {
+		const list = Pref.lookup({mesh: "53393680"});
+		assert(contains(list, "13"));
+	});
+
+	it("invalid", () => {
+		const list = Pref.lookup({mesh: "invalid"});
+		assert(!list);
+	});
+});
+
+function contains(array, value) {
+	if (!array) return array;
+	return array.filter(_ => (_ === value)).length;
+}
