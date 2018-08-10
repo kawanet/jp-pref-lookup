@@ -12,13 +12,12 @@ CLASS=Pref
 all: $(MAIN_OUT)
 
 clean:
-	/bin/rm -f $(MAIN_OUT) $(MAIN_TMP)
+	/bin/rm -f $(MAIN_OUT) $(MAIN_TMP) $(MESH_JSON)
 
 test: all mocha
 
 $(MESH_JSON): $(MESH_SRC)
-	mkdir node_modules/jp-city-lookup/csv
-	node $(MESH_SRC) > $(MESH_JSON)
+	node $(MESH_SRC) $(MESH_JSON)
 
 $(MAIN_TMP): $(MAIN_SRC) $(MESH_JSON)
 	mkdir -p tmp

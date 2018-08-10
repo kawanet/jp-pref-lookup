@@ -48,6 +48,7 @@ console.log(Pref.code("大阪")); // => "27"
 
 ### See Also
 
+- [http://www.stat.go.jp/english/data/mesh/05-1s.html](http://www.stat.go.jp/english/data/mesh/05-1s.html)
 - [http://www.stat.go.jp/data/mesh/m_itiran.html](http://www.stat.go.jp/data/mesh/m_itiran.html)
 - [http://kikakurui.com/x0/X0401-1973-01.html](http://kikakurui.com/x0/X0401-1973-01.html)
 - [https://github.com/kawanet/jp-city-lookup](https://github.com/kawanet/jp-city-lookup)
