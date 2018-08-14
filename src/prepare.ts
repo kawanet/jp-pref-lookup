@@ -13,8 +13,10 @@ async function CLI(file) {
     const meshIndex1 = {};
     const meshIndex2 = {};
 
-    files().forEach(file => {
+    files.forEach(name => {
+        const file = "./node_modules/jp-data-mesh-csv/" + name;
         WARN("reading: " + file);
+
         const binary = fs.readFileSync(file, null);
 
         const data = iconv.decode(binary, "CP932");
