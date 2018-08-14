@@ -1,7 +1,8 @@
 // prepare.ts
 
-import {all} from "jp-grid-square-master";
-import {createWriteStream} from "fs";
+import * as fs from "fs";
+import * as iconv from "iconv-lite";
+import {files} from "jp-data-mesh-csv";
 
 const RADIX2 = 36;
 const WARN = message => console.warn(message);
@@ -12,10 +13,17 @@ async function CLI(file) {
 	const meshIndex1 = {};
 	const meshIndex2 = {};
 
-	await all({
-		progress: WARN,
+	files().forEach(file => {
+		WARN("reading: " + file);
+		const binary = fs.readFileSync(file, null);
 
-		each: ([city, name, mesh]) => {
+		const data = iconv.decode(binary, "CP932");
+
+		const rows = data.split(/\r?\n/).map(line => line.split(",").map(col => col.replace(/^"(.*)"$/, "$1")));
+
+		rows.forEach(([city, name, mesh]) => {
+			if (!+city) return;
+
 			const pref = Math.floor((+city) / 1000);
 
 			const code1 = mesh.substr(0, 4);
@@ -25,7 +33,7 @@ async function CLI(file) {
 			const code2 = mesh.substr(0, 6);
 			const idx2 = mesh2[code2] || (mesh2[code2] = {});
 			idx2[pref] = (idx2[pref] || 0) + 1;
-		}
+		});
 	});
 
 	const list1 = Object.keys(mesh1);
@@ -66,7 +74,7 @@ async function CLI(file) {
 
 	if (file) {
 		WARN("writing: " + file);
-		createWriteStream(file).write(json);
+		fs.createWriteStream(file).write(json);
 	} else {
 		process.stdout.write(json);
 	}

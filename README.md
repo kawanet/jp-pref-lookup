@@ -1,9 +1,9 @@
-# Japan Prefecture Lookup
+# Japan Prefecture Code Lookup
 
 [![Build Status](https://travis-ci.org/kawanet/jp-pref-lookup.svg?branch=master)](https://travis-ci.org/kawanet/jp-pref-lookup) [![npm version](https://badge.fury.io/js/jp-pref-lookup.svg)](https://badge.fury.io/js/jp-pref-lookup)
 
 - JIS X 0401: To−Do−Fu−Ken (Prefecture) Identification Code
-- Lookup: 10km grid mesh reverse geocoding
+- Reverse Geocoding: Japan Integrated Grid Square (10km accuracy)
 - Standalone: [jp-pref-lookup.min.js](https://rawgit.com/kawanet/jp-pref-lookup/master/dist/jp-pref-lookup.min.js) is just 20KB minified, 6KB gzipped
 
 ### Synopsis
@@ -46,10 +46,15 @@ console.log(Pref.code("大阪")); // => "27"
 
 - [https://github.com/kawanet/jp-pref-lookup](https://github.com/kawanet/jp-pref-lookup)
 
+### Reference
+
+- `出典：「市区町村別メッシュ・コード一覧」（総務省統計局）` licensed under CC BY 4.0
+- [http://www.stat.go.jp/data/mesh/m_itiran.html](http://www.stat.go.jp/data/mesh/m_itiran.html)
+- [http://www.stat.go.jp/english/data/mesh/05-1s.html](http://www.stat.go.jp/english/data/mesh/05-1s.html)
+- [https://github.com/jp-mirror/jp-data-mesh-csv](https://github.com/jp-mirror/jp-data-mesh-csv)
+
 ### See Also
 
-- [http://www.stat.go.jp/english/data/mesh/05-1s.html](http://www.stat.go.jp/english/data/mesh/05-1s.html)
-- [http://www.stat.go.jp/data/mesh/m_itiran.html](http://www.stat.go.jp/data/mesh/m_itiran.html)
 - [http://kikakurui.com/x0/X0401-1973-01.html](http://kikakurui.com/x0/X0401-1973-01.html)
 - [https://github.com/kawanet/jp-city-lookup](https://github.com/kawanet/jp-city-lookup)
 

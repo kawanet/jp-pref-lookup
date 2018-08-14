@@ -1,15 +1,16 @@
 {
   "name": "jp-pref-lookup",
-  "description": "Japan Prefecture Lookup / 10km grid mesh reverse geocoding",
-  "version": "0.1.1",
+  "description": "Japan Prefecture Code Lookup / 10km grid reverse geocoding",
+  "version": "0.1.3",
   "bugs": {
     "url": "https://github.com/kawanet/jp-pref-lookup/issues"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.5.7",
+    "@types/node": "^10.5.8",
     "browserify": "^16.2.2",
-    "jp-grid-square-master": "^0.1.1",
+    "iconv-lite": "^0.4.23",
+    "jp-data-mesh-csv": "github:jp-mirror/jp-data-mesh-csv",
     "mocha": "^5.2.0",
     "typescript": "^3.0.1",
     "uglify-js": "^3.4.6"
@@ -30,7 +31,7 @@
     "prepare": "node src/prepare.js dist/jp-pref-mesh.json",
     "test": "./node_modules/.bin/mocha test",
     "tsc": "./node_modules/.bin/tsc",
-    "tsc-declaration": "./node_modules/.bin/tsc --declaration --emitDeclarationOnly --outDir typings lib/jp-pref-lookup.ts",
+    "tsc-typings": "./node_modules/.bin/tsc -p typings.json",
     "tsc-watch": "./node_modules/.bin/tsc --watch"
   },
   "typings": "typings/jp-pref-lookup.d.ts"
