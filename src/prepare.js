@@ -36,76 +36,77 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var jp_grid_square_master_1 = require("jp-grid-square-master");
-var fs_1 = require("fs");
+var fs = require("fs");
+var iconv = require("iconv-lite");
+var jp_data_mesh_csv_1 = require("jp-data-mesh-csv");
 var RADIX2 = 36;
 var WARN = function (message) { return console.warn(message); };
 function CLI(file) {
     return __awaiter(this, void 0, void 0, function () {
         var mesh1, mesh2, meshIndex1, meshIndex2, list1, list2, data, json;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    mesh1 = {};
-                    mesh2 = {};
-                    meshIndex1 = {};
-                    meshIndex2 = {};
-                    return [4 /*yield*/, jp_grid_square_master_1.all({
-                            progress: WARN,
-                            each: function (_a) {
-                                var city = _a[0], name = _a[1], mesh = _a[2];
-                                var pref = Math.floor((+city) / 1000);
-                                var code1 = mesh.substr(0, 4);
-                                var idx1 = mesh1[code1] || (mesh1[code1] = {});
-                                idx1[pref] = (idx1[pref] || 0) + 1;
-                                var code2 = mesh.substr(0, 6);
-                                var idx2 = mesh2[code2] || (mesh2[code2] = {});
-                                idx2[pref] = (idx2[pref] || 0) + 1;
-                            }
-                        })];
-                case 1:
-                    _a.sent();
-                    list1 = Object.keys(mesh1);
-                    WARN("level 1: " + list1.length + " mesh");
-                    list1.forEach(function (code1) {
-                        var idx = mesh1[code1];
-                        var key = (+code1);
-                        var array = Object.keys(idx).sort(function (a, b) {
-                            return ((idx[b] - idx[a]) || ((+b) - (+a)));
-                        }).map(function (v) { return +v; });
-                        meshIndex1[key] = array[0];
-                    });
-                    list2 = Object.keys(mesh2);
-                    WARN("level 2: " + list2.length + " mesh");
-                    list2.forEach(function (code2) {
-                        var idx = mesh2[code2];
-                        var key = (+code2).toString(RADIX2);
-                        var array = Object.keys(idx).sort(function (a, b) {
-                            return ((idx[b] - idx[a]) || ((+b) - (+a)));
-                        }).map(function (v) { return +v; });
-                        if (array.length > 1) {
-                            meshIndex2[key] = array;
-                        }
-                        else {
-                            var first = array[0];
-                            var code1 = Math.floor(+code2 / 100);
-                            if (first !== meshIndex1[code1]) {
-                                meshIndex2[key] = first;
-                            }
-                        }
-                    });
-                    data = { mesh1: meshIndex1, mesh2: meshIndex2 };
-                    json = JSON.stringify(data);
-                    json = json.replace(/(.{76},)(")/g, "$1\n$2");
-                    if (file) {
-                        WARN("writing: " + file);
-                        fs_1.createWriteStream(file).write(json);
+            mesh1 = {};
+            mesh2 = {};
+            meshIndex1 = {};
+            meshIndex2 = {};
+            jp_data_mesh_csv_1.files().forEach(function (file) {
+                WARN("reading: " + file);
+                var binary = fs.readFileSync(file, null);
+                var data = iconv.decode(binary, "CP932");
+                var rows = data.split(/\r?\n/).map(function (line) { return line.split(",").map(function (col) { return col.replace(/^"(.*)"$/, "$1"); }); });
+                rows.forEach(function (_a) {
+                    var city = _a[0], name = _a[1], mesh = _a[2];
+                    if (!+city)
+                        return;
+                    var pref = Math.floor((+city) / 1000);
+                    var code1 = mesh.substr(0, 4);
+                    var idx1 = mesh1[code1] || (mesh1[code1] = {});
+                    idx1[pref] = (idx1[pref] || 0) + 1;
+                    var code2 = mesh.substr(0, 6);
+                    var idx2 = mesh2[code2] || (mesh2[code2] = {});
+                    idx2[pref] = (idx2[pref] || 0) + 1;
+                });
+            });
+            list1 = Object.keys(mesh1);
+            WARN("level 1: " + list1.length + " mesh");
+            list1.forEach(function (code1) {
+                var idx = mesh1[code1];
+                var key = (+code1);
+                var array = Object.keys(idx).sort(function (a, b) {
+                    return ((idx[b] - idx[a]) || ((+b) - (+a)));
+                }).map(function (v) { return +v; });
+                meshIndex1[key] = array[0];
+            });
+            list2 = Object.keys(mesh2);
+            WARN("level 2: " + list2.length + " mesh");
+            list2.forEach(function (code2) {
+                var idx = mesh2[code2];
+                var key = (+code2).toString(RADIX2);
+                var array = Object.keys(idx).sort(function (a, b) {
+                    return ((idx[b] - idx[a]) || ((+b) - (+a)));
+                }).map(function (v) { return +v; });
+                if (array.length > 1) {
+                    meshIndex2[key] = array;
+                }
+                else {
+                    var first = array[0];
+                    var code1 = Math.floor(+code2 / 100);
+                    if (first !== meshIndex1[code1]) {
+                        meshIndex2[key] = first;
                     }
-                    else {
-                        process.stdout.write(json);
-                    }
-                    return [2 /*return*/];
+                }
+            });
+            data = { mesh1: meshIndex1, mesh2: meshIndex2 };
+            json = JSON.stringify(data);
+            json = json.replace(/(.{76},)(")/g, "$1\n$2");
+            if (file) {
+                WARN("writing: " + file);
+                fs.createWriteStream(file).write(json);
             }
+            else {
+                process.stdout.write(json);
+            }
+            return [2 /*return*/];
         });
     });
 }
