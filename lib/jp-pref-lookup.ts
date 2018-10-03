@@ -1,10 +1,26 @@
 "use strict";
 
-const DATA = require("../dist/jp-pref-mesh.json");
+type CodeToName = { [code: string]: string };
+type NameToCode = { [name: string]: string };
+type MeshMaster = { [mesh: string]: number | number[] };
+type MasterJSON = { mesh1: MeshMaster, mesh2: MeshMaster };
+
+const DATA = require("../dist/jp-pref-mesh.json") as MasterJSON;
+
+export interface LookupOptions {
+    /// latitude,longitude
+    ll?: string,
+    /// latitude
+    lat?: number,
+    /// longitude
+    lng?: number,
+    /// mesh code
+    mesh?: string,
+}
 
 export module Pref {
-    const CODE = {};
-    const NAME = {};
+    const CODE = {} as CodeToName;
+    const NAME = {} as NameToCode;
 
     const SRC = (
         "北海道,青森県,岩手県,宮城県,秋田県,山形県,福島県,茨城県,栃木県,群馬県," +
@@ -31,21 +47,12 @@ export module Pref {
             (NAME[name] && c2(+name)); // prefecture code
     }
 
-    export function name(code): string {
+    export function name(code: string | number): string {
         return NAME[code] || // prefecture code
-            NAME[+Pref.code(code)]; // name
+            NAME[+Pref.code(code as string)]; // name
     }
 
-    export function lookup(options: {
-        /// latitude,longitude
-        ll?: string,
-        /// latitude
-        lat?: number,
-        /// longitude
-        lng?: number,
-        /// mesh code
-        mesh?: string,
-    }): string[] | undefined {
+    export function lookup(options?: LookupOptions): string[] | undefined {
         if (!options) return;
 
         // by pair of latitude and longitude
@@ -59,7 +66,7 @@ export module Pref {
         const ll = options.ll;
         if (ll) {
             const latlng = ("" + ll).split(",");
-            return findForMesh(getMeshForLocation(latlng[0], latlng[1]));
+            return findForMesh(getMeshForLocation(+latlng[0], +latlng[1]));
         }
 
         // mesh code
@@ -70,15 +77,17 @@ export module Pref {
     }
 }
 
-function findForMesh(mesh) {
+function findForMesh(mesh?: string): string[] | undefined {
+    if (!mesh) return;
     mesh += "";
     const mesh1 = mesh.substr(0, 4);
     const mesh2 = (+(mesh.substr(0, 6))).toString(36);
     const pref = DATA.mesh2[mesh2] || DATA.mesh1[mesh1];
-    return (+pref > 0) ? [c2(pref)] : (pref && pref.map(c2));
+    if (+pref > 0) return [c2(pref as number)];
+    if (pref) return (pref as number[]).map(c2);
 }
 
-function getMeshForLocation(latitude, longitude) {
+function getMeshForLocation(latitude: number, longitude: number): string | undefined {
     latitude *= 1.5;
     longitude -= 100;
 
@@ -89,9 +98,8 @@ function getMeshForLocation(latitude, longitude) {
         + ((latitude * 8 % 8) | 0) + ((longitude * 8 % 8) | 0);
 }
 
-function c2(number) {
+function c2(number: number): string {
     number |= 0;
     number %= 100;
     return (number < 10 ? "0" : "") + number;
-
 }

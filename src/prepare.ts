@@ -1,17 +1,22 @@
-// prepare.ts
+// prepare
 
 import * as fs from "fs";
 import * as iconv from "iconv-lite";
 import {files} from "jp-data-mesh-csv";
 
 const RADIX2 = 36;
-const WARN = message => console.warn(message);
+const WARN = (message: string) => console.warn(message);
 
-async function CLI(file) {
-    const mesh1 = {};
-    const mesh2 = {};
-    const meshIndex1 = {};
-    const meshIndex2 = {};
+type PrefIndex = { [pref: string]: number };
+type MeshIndex = { [mesh: string]: PrefIndex };
+type MeshMaster = { [mesh: string]: number | number[] };
+type MasterJSON = { mesh1: MeshMaster, mesh2: MeshMaster };
+
+async function CLI(file: string) {
+    const mesh1 = {} as MeshIndex;
+    const mesh2 = {} as MeshIndex;
+    const meshIndex1 = {} as MeshMaster;
+    const meshIndex2 = {} as MeshMaster;
 
     files.forEach(name => {
         const file = "./node_modules/jp-data-mesh-csv/" + name;
@@ -70,7 +75,7 @@ async function CLI(file) {
         }
     });
 
-    const data = {mesh1: meshIndex1, mesh2: meshIndex2};
+    const data = {mesh1: meshIndex1, mesh2: meshIndex2} as MasterJSON;
     let json = JSON.stringify(data);
     json = json.replace(/(.{76},)(")/g, "$1\n$2");
 

@@ -39,7 +39,6 @@ describe(FILE, () => {
     });
 });
 
-function contains(array, value) {
-    if (!array) return array;
-    return array.filter(_ => (_ === value)).length;
+function contains(array: string[] | undefined, value: string): boolean {
+    return !!array && array.some(v => (v === value));
 }
