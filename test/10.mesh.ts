@@ -24,7 +24,8 @@ describe(FILE, () => {
 
     it("invalid", () => {
         const list = Pref.lookup({mesh: "invalid"});
-        assert(!list);
+        assert(Array.isArray(list));
+        assert.strictEqual(list.length, 0);
     });
 });
 

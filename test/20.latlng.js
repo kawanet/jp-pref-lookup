@@ -28,7 +28,8 @@ describe(FILE, function () {
     });
     it("invalid", function () {
         var list = jp_pref_lookup_1.Pref.lookup({ ll: "invalid,invalid" });
-        assert(!list);
+        assert(Array.isArray(list));
+        assert.strictEqual(list.length, 0);
     });
 });
 function contains(array, value) {
