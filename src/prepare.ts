@@ -23,7 +23,7 @@ async function CLI(file) {
 
         const rows = data.split(/\r?\n/).map(line => line.split(",").map(col => col.replace(/^"(.*)"$/, "$1")));
 
-        rows.forEach(([city, name, mesh]) => {
+        rows.forEach(([city, _, mesh]) => {
             if (!+city) return;
 
             const pref = Math.floor((+city) / 1000);
