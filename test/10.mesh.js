@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("mocha");
 var jp_pref_lookup_1 = require("../lib/jp-pref-lookup");
 var assert = require("assert");
 var FILE = __filename.split("/").pop();
@@ -22,7 +23,5 @@ describe(FILE, function () {
     });
 });
 function contains(array, value) {
-    if (!array)
-        return array;
-    return array.filter(function (_) { return (_ === value); }).length;
+    return !!array && array.some(function (v) { return (v === value); });
 }

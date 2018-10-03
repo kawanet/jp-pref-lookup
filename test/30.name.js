@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("mocha");
 var jp_pref_lookup_1 = require("../lib/jp-pref-lookup");
 var assert = require("assert");
 var FILE = __filename.split("/").pop();

@@ -1,5 +1,5 @@
 "use strict";
-// prepare.ts
+// prepare
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -56,7 +56,7 @@ function CLI(file) {
                 var data = iconv.decode(binary, "CP932");
                 var rows = data.split(/\r?\n/).map(function (line) { return line.split(",").map(function (col) { return col.replace(/^"(.*)"$/, "$1"); }); });
                 rows.forEach(function (_a) {
-                    var city = _a[0], name = _a[1], mesh = _a[2];
+                    var city = _a[0], _ = _a[1], mesh = _a[2];
                     if (!+city)
                         return;
                     var pref = Math.floor((+city) / 1000);
