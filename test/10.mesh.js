@@ -23,5 +23,5 @@ describe(FILE, function () {
     });
 });
 function contains(array, value) {
-    return !!array && array.some(function (v) { return (v === value); });
+    return array && array.some(function (v) { return (v === value); });
 }
