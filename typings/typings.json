@@ -1,12 +1,15 @@
 {
   "include": [
-    "lib/*.ts"
+    "../lib/*.ts"
   ],
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
+    "lib": [
+      "es2015"
+    ],
     "module": "commonjs",
-    "outDir": "typings",
+    "outDir": ".",
     "types": [
       "node"
     ]
