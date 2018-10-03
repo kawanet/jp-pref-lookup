@@ -53,21 +53,21 @@ export module Pref {
             NAME[+Pref.code(code as string)!]; // name
     }
 
-    export function lookup(options?: LookupOptions): string[] | undefined {
-        if (!options) return;
+    export function lookup(options?: LookupOptions): string[] {
+        if (!options) return [];
 
         // by pair of latitude and longitude
         const lat = +options.lat!;
         const lng = +options.lng!;
         if (lat || lng) {
-            return findForMesh(getMeshForLocation(lat, lng));
+            return findForMesh(getMeshForLocation(lat, lng)!);
         }
 
         // by comma separated latitude and longitude
         const ll = options.ll;
         if (ll) {
             const latlng = ("" + ll).split(",");
-            return findForMesh(getMeshForLocation(+latlng[0], +latlng[1]));
+            return findForMesh(getMeshForLocation(+latlng[0], +latlng[1])!);
         }
 
         // mesh code
@@ -76,7 +76,7 @@ export module Pref {
             return findForMesh(mesh);
         }
 
-        return;
+        return [];
     }
 }
 
@@ -84,15 +84,14 @@ export module Pref {
  * @private
  */
 
-function findForMesh(mesh?: string): string[] | undefined {
-    if (!mesh) return;
+function findForMesh(mesh: string): string[] {
     mesh += "";
     const mesh1 = mesh.substr(0, 4);
     const mesh2 = (+(mesh.substr(0, 6))).toString(36);
     const pref = DATA.mesh2[mesh2] || DATA.mesh1[mesh1];
     if (+pref > 0) return [c2(pref as number)];
     if (pref) return (pref as number[]).map(c2);
-    return;
+    return [];
 }
 
 function getMeshForLocation(latitude: number, longitude: number): string | undefined {

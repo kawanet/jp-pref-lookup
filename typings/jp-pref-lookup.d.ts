@@ -8,5 +8,5 @@ export declare module Pref {
     function all(): Array<string>;
     function code(name: string): string | undefined;
     function name(code: string | number): string | undefined;
-    function lookup(options?: LookupOptions): string[] | undefined;
+    function lookup(options?: LookupOptions): string[];
 }
