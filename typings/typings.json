@@ -9,6 +9,13 @@
       "es2015"
     ],
     "module": "commonjs",
+    "noImplicitAny": true,
+    "noImplicitReturns": false,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": false,
+    "strictNullChecks": true,
     "outDir": ".",
     "types": [
       "node"
