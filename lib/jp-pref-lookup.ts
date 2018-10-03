@@ -36,7 +36,7 @@ export module Pref {
         return code;
     });
 
-    export function all(): Array<string> {
+    export function all(): string[] {
         return ALL.slice();
     }
 
