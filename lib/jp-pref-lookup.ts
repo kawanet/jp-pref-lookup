@@ -6,6 +6,7 @@ type MeshMaster = { [mesh: string]: number | number[] };
 type MasterJSON = { mesh1: MeshMaster, mesh2: MeshMaster };
 
 const DATA = require("../dist/jp-pref-mesh.json") as MasterJSON;
+const c2 = fixedString(2);
 
 export interface LookupOptions {
     /// latitude,longitude
@@ -77,6 +78,10 @@ export module Pref {
     }
 }
 
+/**
+ * @private
+ */
+
 function findForMesh(mesh?: string): string[] | undefined {
     if (!mesh) return;
     mesh += "";
@@ -94,12 +99,11 @@ function getMeshForLocation(latitude: number, longitude: number): string | undef
     if (!(0 <= latitude && latitude < 100)) return;
     if (!(0 <= longitude && longitude < 100)) return;
 
-    return c2(latitude) + c2(longitude)
+    return c2(latitude % 100) + c2(longitude % 100)
         + ((latitude * 8 % 8) | 0) + ((longitude * 8 % 8) | 0);
 }
 
-function c2(number: number): string {
-    number |= 0;
-    number %= 100;
-    return (number < 10 ? "0" : "") + number;
+function fixedString(length: number) {
+    return (number: number | string) => (number && (number as string).length === length) ?
+        (number as string) : ("00" + (+number | 0)).substr(-length);
 }
