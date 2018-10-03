@@ -28,6 +28,6 @@ describe(FILE, () => {
     });
 });
 
-function contains(array: string[] | undefined, value: string): boolean {
+function contains(array?: string[], value?: string): boolean {
     return !!array && array.some(v => (v === value));
 }

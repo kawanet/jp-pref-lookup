@@ -40,7 +40,7 @@ export module Pref {
         return ALL.slice();
     }
 
-    export function code(name: string): string {
+    export function code(name: string): string | undefined {
         return CODE[name] || // full name
             CODE[name + "都"] || // short name
             CODE[name + "府"] ||
@@ -48,9 +48,9 @@ export module Pref {
             (NAME[name] && c2(+name)); // prefecture code
     }
 
-    export function name(code: string | number): string {
+    export function name(code: string | number): string | undefined {
         return NAME[code] || // prefecture code
-            NAME[+Pref.code(code as string)]; // name
+            NAME[+Pref.code(code as string)!]; // name
     }
 
     export function lookup(options?: LookupOptions): string[] | undefined {
@@ -75,6 +75,8 @@ export module Pref {
         if (mesh) {
             return findForMesh(mesh);
         }
+
+        return;
     }
 }
 
@@ -90,6 +92,7 @@ function findForMesh(mesh?: string): string[] | undefined {
     const pref = DATA.mesh2[mesh2] || DATA.mesh1[mesh1];
     if (+pref > 0) return [c2(pref as number)];
     if (pref) return (pref as number[]).map(c2);
+    return;
 }
 
 function getMeshForLocation(latitude: number, longitude: number): string | undefined {
