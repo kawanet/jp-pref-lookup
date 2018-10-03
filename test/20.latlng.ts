@@ -1,9 +1,10 @@
 "use strict";
 
+import "mocha";
 import {Pref} from "../lib/jp-pref-lookup";
 
 const assert = require("assert");
-const FILE = __filename.split("/").pop();
+const FILE = __filename.split("/").pop() as string;
 
 describe(FILE, () => {
     it("Sapporo", () => {

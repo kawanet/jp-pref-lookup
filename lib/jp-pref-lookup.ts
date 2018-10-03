@@ -45,12 +45,12 @@ export module Pref {
         lng?: number,
         /// mesh code
         mesh?: string,
-    }): string[] {
+    }): string[] | undefined {
         if (!options) return;
 
         // by pair of latitude and longitude
-        const lat = +options.lat;
-        const lng = +options.lng;
+        const lat = +options.lat!;
+        const lng = +options.lng!;
         if (lat || lng) {
             return findForMesh(getMeshForLocation(lat, lng));
         }
