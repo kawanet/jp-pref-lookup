@@ -1,9 +1,11 @@
-*.browserify.js
+*.tgz
 *~
 .DS_Store
 .Thumbs
 ._*
 .idea
+.vscode
 node_modules
 npm-debug.log*
-tmp/
+package-lock.json
+~$*
