@@ -5,7 +5,7 @@
 
 - JIS X 0401: To−Do−Fu−Ken (Prefecture) Identification Code
 - Reverse Geocoding: Japan Integrated Grid Square (10km accuracy)
-- Standalone: [jp-pref-lookup.min.js](https://rawgit.com/kawanet/jp-pref-lookup/master/dist/jp-pref-lookup.min.js) is just 20KB minified, 6KB gzipped
+- Standalone: [jp-pref-lookup.min.js](https://cdn.jsdelivr.net/npm/jp-pref-lookup/dist/jp-pref-lookup.min.js) is just 20KB minified, 6KB gzipped
 
 ### Synopsis
 
@@ -32,7 +32,7 @@ console.log(Pref.code("大阪")); // => "27"
 - This works with [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) on Web browsers.
 
 ```html
-<script src="jp-pref-lookup.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jp-pref-lookup/dist/jp-pref-lookup.min.js"></script>
 <script>
   navigator.geolocation.getCurrentPosition(function(position) {
     var ll = position.coords.latitude + "," + position.coords.longitude;
@@ -45,23 +45,23 @@ console.log(Pref.code("大阪")); // => "27"
 
 ### GitHub
 
-- [https://github.com/kawanet/jp-pref-lookup](https://github.com/kawanet/jp-pref-lookup)
+- https://github.com/kawanet/jp-pref-lookup
 
 ### Reference
 
 - `出典：「市区町村別メッシュ・コード一覧」（総務省統計局）` licensed under CC BY 4.0
-- [http://www.stat.go.jp/data/mesh/m_itiran.html](http://www.stat.go.jp/data/mesh/m_itiran.html)
-- [http://www.stat.go.jp/english/data/mesh/05-1s.html](http://www.stat.go.jp/english/data/mesh/05-1s.html)
-- [https://github.com/jp-mirror/jp-data-mesh-csv](https://github.com/jp-mirror/jp-data-mesh-csv)
+- https://www.stat.go.jp/data/mesh/m_itiran.html
+- https://www.stat.go.jp/english/data/mesh/05-1s.html
+- https://github.com/jp-mirror/jp-data-mesh-csv
 
 ### See Also
 
-- [http://kikakurui.com/x0/X0401-1973-01.html](http://kikakurui.com/x0/X0401-1973-01.html)
-- [https://github.com/kawanet/jp-city-lookup](https://github.com/kawanet/jp-city-lookup)
+- https://kikakurui.com/x0/X0401-1973-01.html
+- https://github.com/kawanet/jp-city-lookup
 
 ### The MIT License (MIT)
 
-Copyright (c) 2018 Yusuke Kawasaki
+Copyright (c) 2018-2021 Yusuke Kawasaki
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
