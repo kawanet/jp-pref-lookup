@@ -1,6 +1,5 @@
-"use strict";
+#!/usr/bin/env mocha -R spec
 
-import "mocha";
 import {strict as assert} from "assert";
 import {Pref} from "../";
 
