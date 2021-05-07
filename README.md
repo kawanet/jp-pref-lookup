@@ -10,7 +10,7 @@
 ### Synopsis
 
 ```js
-const Pref = require("jp-pref-lookup").Pref;
+const {Pref} = require("jp-pref-lookup");
 
 // by pair of latitude and longitude
 console.log(Pref.lookup({lat: 35.68944, lng: 139.69167})); // => ["13"]

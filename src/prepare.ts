@@ -2,7 +2,7 @@
 
 import * as fs from "fs";
 import * as iconv from "iconv-lite";
-import {files} from "jp-data-mesh-csv";
+import {dirname, files} from "jp-data-mesh-csv";
 
 const RADIX2 = 36;
 const WARN = (message: string) => console.warn(message);
@@ -19,7 +19,7 @@ async function CLI(file: string) {
     const meshIndex2 = {} as MeshMaster;
 
     files.forEach(name => {
-        const file = "./node_modules/jp-data-mesh-csv/" + name;
+        const file = `${dirname}/${name}`;
         WARN("reading: " + file);
 
         const binary = fs.readFileSync(file, null);
