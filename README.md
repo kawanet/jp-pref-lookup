@@ -1,6 +1,7 @@
 # Japan Prefecture Code Lookup
 
-[![Build Status](https://travis-ci.org/kawanet/jp-pref-lookup.svg?branch=master)](https://travis-ci.org/kawanet/jp-pref-lookup) [![npm version](https://badge.fury.io/js/jp-pref-lookup.svg)](https://badge.fury.io/js/jp-pref-lookup)
+[![Node.js CI](https://github.com/kawanet/jp-pref-lookup/workflows/Node.js%20CI/badge.svg?branch=master)](https://github.com/kawanet/jp-pref-lookup/actions/)
+[![npm version](https://badge.fury.io/js/jp-pref-lookup.svg)](https://badge.fury.io/js/jp-pref-lookup)
 
 - JIS X 0401: To−Do−Fu−Ken (Prefecture) Identification Code
 - Reverse Geocoding: Japan Integrated Grid Square (10km accuracy)
