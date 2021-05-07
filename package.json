@@ -40,7 +40,6 @@
     "fixpack": "fixpack",
     "prepack": "npm run build && npm test",
     "test": "./node_modules/.bin/mocha test",
-    "tsc-typings": "./node_modules/.bin/tsc -p typings/typings.json",
     "tsc-watch": "./node_modules/.bin/tsc --watch",
     "update": "make"
   },

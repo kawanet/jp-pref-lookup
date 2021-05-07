@@ -1,4 +1,10 @@
-"use strict";
+/**
+ * jp-pref-lookup
+ *
+ * @see https://github.com/kawanet/jp-pref-lookup
+ */
+
+import type {LookupOptions} from "../";
 
 type CodeToName = { [code: string]: string };
 type NameToCode = { [name: string]: string };
@@ -7,17 +13,6 @@ type MasterJSON = { mesh1: MeshMaster, mesh2: MeshMaster };
 
 const DATA = require("../dist/jp-pref-mesh.json") as MasterJSON;
 const c2 = fixedString(2);
-
-export interface LookupOptions {
-    /// latitude,longitude
-    ll?: string,
-    /// latitude
-    lat?: number,
-    /// longitude
-    lng?: number,
-    /// mesh code
-    mesh?: string,
-}
 
 export module Pref {
     const CODE = {} as CodeToName;
