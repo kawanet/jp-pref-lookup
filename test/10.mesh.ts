@@ -1,31 +1,30 @@
-"use strict";
+#!/usr/bin/env mocha -R spec
 
-import "mocha";
-import {Pref} from "../lib/jp-pref-lookup";
+import {strict as assert} from "assert";
+import {Pref} from "../";
 
-const assert = require("assert");
 const FILE = __filename.split("/").pop() as string;
 
 describe(FILE, () => {
     it("lookup({mesh: 5339})", () => {
         const list = Pref.lookup({mesh: "5339"});
-        assert(contains(list, "13"));
+        assert.ok(contains(list, "13"));
     });
 
     it("lookup({mesh: 533946})", () => {
         const list = Pref.lookup({mesh: "533946"});
-        assert(contains(list, "13"));
+        assert.ok(contains(list, "13"));
     });
 
     it("lookup({mesh: 53393680})", () => {
         const list = Pref.lookup({mesh: "53393680"});
-        assert(contains(list, "13"));
+        assert.ok(contains(list, "13"));
     });
 
     it("invalid", () => {
         const list = Pref.lookup({mesh: "invalid"});
-        assert(Array.isArray(list));
-        assert.strictEqual(list.length, 0);
+        assert.ok(Array.isArray(list));
+        assert.equal(list.length, 0);
     });
 });
 

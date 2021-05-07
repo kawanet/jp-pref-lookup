@@ -1,24 +1,22 @@
 {
   "include": [
-    "../lib/*.ts"
+    "../lib",
+    "../test"
   ],
   "compilerOptions": {
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "lib": [
-      "es2015"
-    ],
-    "module": "commonjs",
+    "module": "CommonJS",
     "noImplicitAny": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": false,
+    "outDir": "../build",
     "skipLibCheck": false,
-    "strictNullChecks": true,
-    "outDir": ".",
+    "strictNullChecks": false,
+    "target": "ES5",
     "types": [
+      "mocha",
       "node"
     ]
   }
