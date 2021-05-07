@@ -27,7 +27,7 @@ $(MAIN_TMP): $(MAIN_SRC) $(MESH_JSON)
 	egrep -v '^"use strict";|__esModule' > $@
 
 $(MAIN_OUT): $(MAIN_TMP)
-	./node_modules/.bin/uglifyjs -c -m -o $@ $<
+	./node_modules/.bin/terser -c -m -o $@ $<
 
 mocha:
 	./node_modules/.bin/mocha test
