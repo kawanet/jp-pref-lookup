@@ -2,6 +2,7 @@
 
 import * as fs from "fs";
 import * as GridMaster from "jp-grid-square-master";
+import {JGSMColumns as C} from "jp-grid-square-master";
 
 const RADIX2 = 36;
 const WARN = (message: string) => console.warn(message);
@@ -10,13 +11,6 @@ type PrefIndex = { [pref: string]: number };
 type MeshIndex = { [mesh: string]: PrefIndex };
 type MeshMaster = { [mesh: string]: number | number[] };
 type MasterJSON = { mesh1: MeshMaster, mesh2: MeshMaster };
-
-const enum C {
-    都道府県市区町村コード = 0,
-    市区町村名 = 1,
-    基準メッシュコード = 2,
-    備考 = 3,
-}
 
 async function CLI(file: string) {
     const mesh1 = {} as MeshIndex;
