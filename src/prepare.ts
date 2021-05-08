@@ -1,8 +1,7 @@
-// prepare
+#!/usr/bin/env node
 
 import * as fs from "fs";
-import * as iconv from "iconv-cp932";
-import {dirname, files} from "jp-data-mesh-csv";
+import * as GridMaster from "jp-grid-square-master";
 
 const RADIX2 = 36;
 const WARN = (message: string) => console.warn(message);
@@ -12,26 +11,27 @@ type MeshIndex = { [mesh: string]: PrefIndex };
 type MeshMaster = { [mesh: string]: number | number[] };
 type MasterJSON = { mesh1: MeshMaster, mesh2: MeshMaster };
 
+const enum C {
+    都道府県市区町村コード = 0,
+    市区町村名 = 1,
+    基準メッシュコード = 2,
+    備考 = 3,
+}
+
 async function CLI(file: string) {
     const mesh1 = {} as MeshIndex;
     const mesh2 = {} as MeshIndex;
     const meshIndex1 = {} as MeshMaster;
     const meshIndex2 = {} as MeshMaster;
 
-    files.forEach(name => {
-        const file = `${dirname}/${name}`;
-        WARN("reading: " + file);
+    await GridMaster.all({
+        progress: WARN,
+        each: row => {
+            const city = +row[C.都道府県市区町村コード];
+            if (!city) return;
 
-        const binary = fs.readFileSync(file, null);
-
-        const data = iconv.decode(binary);
-
-        const rows = data.split(/\r?\n/).map(line => line.split(",").map(col => col.replace(/^"(.*)"$/, "$1")));
-
-        rows.forEach(([city, _, mesh]) => {
-            if (!+city) return;
-
-            const pref = Math.floor((+city) / 1000);
+            const pref = Math.floor(city / 1000);
+            const mesh = row[C.基準メッシュコード];
 
             const code1 = mesh.substr(0, 4);
             const idx1 = mesh1[code1] || (mesh1[code1] = {});
@@ -40,7 +40,7 @@ async function CLI(file: string) {
             const code2 = mesh.substr(0, 6);
             const idx2 = mesh2[code2] || (mesh2[code2] = {});
             idx2[pref] = (idx2[pref] || 0) + 1;
-        });
+        }
     });
 
     const list1 = Object.keys(mesh1);
