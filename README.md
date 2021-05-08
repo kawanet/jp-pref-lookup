@@ -57,7 +57,9 @@ console.log(Pref.code("大阪")); // => "27"
 ### See Also
 
 - https://kikakurui.com/x0/X0401-1973-01.html
-- https://github.com/kawanet/jp-city-lookup
+- https://www.npmjs.com/package/jp-pref-lookup
+- https://www.npmjs.com/package/jp-city-lookup
+- https://www.npmjs.com/package/jp-zipcode-lookup
 
 ### The MIT License (MIT)
 

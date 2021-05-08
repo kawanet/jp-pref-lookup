@@ -1,7 +1,7 @@
 // prepare
 
 import * as fs from "fs";
-import * as iconv from "iconv-lite";
+import * as iconv from "iconv-cp932";
 import {dirname, files} from "jp-data-mesh-csv";
 
 const RADIX2 = 36;
@@ -24,7 +24,7 @@ async function CLI(file: string) {
 
         const binary = fs.readFileSync(file, null);
 
-        const data = iconv.decode(binary, "CP932");
+        const data = iconv.decode(binary);
 
         const rows = data.split(/\r?\n/).map(line => line.split(",").map(col => col.replace(/^"(.*)"$/, "$1")));
 
