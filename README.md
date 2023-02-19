@@ -2,6 +2,7 @@
 
 [![Node.js CI](https://github.com/kawanet/jp-pref-lookup/workflows/Node.js%20CI/badge.svg?branch=master)](https://github.com/kawanet/jp-pref-lookup/actions/)
 [![npm version](https://badge.fury.io/js/jp-pref-lookup.svg)](https://badge.fury.io/js/jp-pref-lookup)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/jp-pref-lookup/dist/jp-pref-lookup.min.js?compression=gzip)](https://unpkg.com/jp-pref-lookup/dist/jp-pref-lookup.min.js)
 
 - JIS X 0401: To−Do−Fu−Ken (Prefecture) Identification Code
 - Reverse Geocoding: Japan Integrated Grid Square (10km accuracy)
@@ -63,7 +64,7 @@ console.log(Pref.code("大阪")); // => "27"
 
 ### The MIT License (MIT)
 
-Copyright (c) 2018-2022 Yusuke Kawasaki
+Copyright (c) 2018-2023 Yusuke Kawasaki
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

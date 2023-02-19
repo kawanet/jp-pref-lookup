@@ -1,23 +1,20 @@
 {
   "include": [
-    "../lib",
-    "../test"
+    "lib/"
   ],
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "esnext",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": false,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": false,
-    "outDir": "../build",
+    "resolveJsonModule": true,
+    "outDir": "build/esm/",
     "skipLibCheck": false,
-    "strictNullChecks": false,
-    "target": "ES5",
-    "types": [
-      "mocha",
-      "node"
-    ]
+    "strictNullChecks": true,
+    "target": "ES2018"
   }
 }
