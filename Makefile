@@ -12,6 +12,8 @@ clean:
 	make -C browser $@
 
 test: all mocha
+	node -e 'import("./dist/jp-pref-lookup.mjs").then(x => console.log(x.Pref.name(13)))'
+	node -e 'console.log(require("./dist/jp-pref-lookup.min.js").Pref.name(13))'
 
 src/%.js: src/%.ts
 	./node_modules/.bin/tsc -p tsconfig.json
@@ -35,5 +37,5 @@ update:
 mocha:
 	./node_modules/.bin/mocha test
 
-.PHONY: all clean test update
+.PHONY: all clean test mocha update
 
