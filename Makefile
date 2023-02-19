@@ -19,8 +19,11 @@ src/%.js: src/%.ts
 dist/jp-pref-mesh.json: src/prepare.js
 	node $< $@
 
-dist/%.mjs: build/esm/%.js
-	cp $< $@
+dist/%.mjs: build/esm/%.js dist/jp-pref-mesh.json
+	cat $< > $@
+	perl -i -pe 's#^(.* = require\()#// $$&#mg' $@
+	echo "const DATA = " >> $@
+	cat dist/jp-pref-mesh.json >> $@
 
 build/esm/%.js: lib/%.ts
 	./node_modules/.bin/tsc -p tsconfig-esm.json
