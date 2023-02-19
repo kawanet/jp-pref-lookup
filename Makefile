@@ -1,23 +1,36 @@
 #!/usr/bin/env bash -c make
 
-MESH_JSON=dist/jp-pref-mesh.json
+ALL=\
+	dist/jp-pref-mesh.json \
+	dist/jp-pref-lookup.mjs \
 
-all: $(MESH_JSON)
+all: $(ALL)
 	make -C browser $@
 
 clean:
-	/bin/rm -f $(MESH_JSON) src/*.js lib/*.js test/*.js
+	/bin/rm -f dist/*.mjs src/*.js lib/*.js test/*.js
 	make -C browser $@
 
 test: all mocha
 
 src/%.js: src/%.ts
-	./node_modules/.bin/tsc -p .
+	./node_modules/.bin/tsc -p tsconfig.json
 
-$(MESH_JSON): src/prepare.js
-	node $< $(MESH_JSON)
+dist/jp-pref-mesh.json: src/prepare.js
+	node $< $@
+
+dist/%.mjs: build/esm/%.js
+	cp $< $@
+
+build/esm/%.js: lib/%.ts
+	./node_modules/.bin/tsc -p tsconfig-esm.json
+
+update:
+	/bin/rm -f dist/jp-pref-mesh.json
+	make dist/jp-pref-mesh.json
 
 mocha:
 	./node_modules/.bin/mocha test
 
-.PHONY: all clean test
+.PHONY: all clean test update
+

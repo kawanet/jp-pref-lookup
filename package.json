@@ -20,8 +20,8 @@
     "README.md",
     "dist/*.js",
     "dist/*.json",
+    "dist/*.mjs",
     "lib/*.js",
-    "src/*.js",
     "typings/*.d.ts"
   ],
   "homepage": "https://github.com/kawanet/jp-pref-lookup#readme",
@@ -31,6 +31,7 @@
   ],
   "license": "MIT",
   "main": "./lib/jp-pref-lookup.js",
+  "module": "./dist/jp-pref-lookup.mjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kawanet/jp-pref-lookup.git"
@@ -38,10 +39,12 @@
   "scripts": {
     "build": "make",
     "fixpack": "fixpack",
-    "prepack": "npm run build && npm test",
+    "prepack": "make clean all && npm test",
     "test": "./node_modules/.bin/mocha test",
+    "test-browser": "make -C browser && open browser/test.html",
     "tsc-watch": "./node_modules/.bin/tsc --watch",
-    "update": "make"
+    "update": "make update"
   },
+  "type": "commonjs",
   "typings": "typings/jp-pref-lookup.d.ts"
 }
