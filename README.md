@@ -28,6 +28,12 @@ console.log(Pref.code("東京都")); // => "13"
 console.log(Pref.code("大阪")); // => "27"
 ```
 
+### ES Module
+
+```js
+import {Pref} from "jp-pref-lookup";
+```
+
 ### Browser
 
 - This works with [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) on Web browsers.

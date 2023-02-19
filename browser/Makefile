@@ -20,7 +20,7 @@ all: $(ALL)
 	echo '})("undefined" !== typeof exports ? exports : {})' >> $@
 	perl -i -pe 's#^(.* = require|"use strict"|Object.defineProperty|exports.*= void 0)#// $$&#mg' $@
 
-test: dist ../build/test.js
+test: ../build/test.js
 
 ../build/test.js: ../test/10.mesh.js
 	../node_modules/.bin/browserify ../test/*.js \
