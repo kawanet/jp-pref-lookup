@@ -8,10 +8,10 @@
 - Reverse Geocoding: Japan Integrated Grid Square (10km accuracy)
 - Standalone: [jp-pref-lookup.min.js](https://cdn.jsdelivr.net/npm/jp-pref-lookup/dist/jp-pref-lookup.min.js) is just 20KB minified, 6KB gzipped
 
-### Synopsis
+## SYNOPSIS
 
 ```js
-const {Pref} = require("jp-pref-lookup");
+import {Pref} from "jp-pref-lookup";
 
 // by pair of latitude and longitude
 console.log(Pref.lookup({lat: 35.68944, lng: 139.69167})); // => ["13"]
@@ -28,15 +28,22 @@ console.log(Pref.code("東京都")); // => "13"
 console.log(Pref.code("大阪")); // => "27"
 ```
 
-### ES Module
+See TypeScript declaration [jp-pref-lookup.d.ts](https://github.com/kawanet/jp-pref-lookup/blob/master/typings/jp-pref-lookup.d.ts) for detail.
+
+## CJS
+
+- Both ES Modules and CommonJS supported.
 
 ```js
-import {Pref} from "jp-pref-lookup";
+const {Pref} = require("jp-pref-lookup");
 ```
 
-### Browser
+## WEB BROWSERS
 
-- This works with [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) on Web browsers.
+- The minified build of the library is also available for Web browsers via
+[jsDelivr CDN](https://www.jsdelivr.com/package/npm/jp-pref-lookup).
+- https://cdn.jsdelivr.net/npm/jp-pref-lookup/dist/jp-pref-lookup.min.js
+- Here is a sample to works with [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) on Web browsers.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/jp-pref-lookup/dist/jp-pref-lookup.min.js"></script>
@@ -50,25 +57,22 @@ import {Pref} from "jp-pref-lookup";
 </script>
 ```
 
-### GitHub
-
-- https://github.com/kawanet/jp-pref-lookup
-
-### Reference
+## REFERENCE
 
 - `出典：「市区町村別メッシュ・コード一覧」（総務省統計局）` licensed under CC BY 4.0
 - https://www.stat.go.jp/data/mesh/m_itiran.html
 - https://www.stat.go.jp/english/data/mesh/05-1s.html
 - https://github.com/jp-mirror/jp-data-mesh-csv
 
-### See Also
+## LINKS
 
+- https://github.com/kawanet/jp-pref-lookup
 - https://kikakurui.com/x0/X0401-1973-01.html
 - https://www.npmjs.com/package/jp-pref-lookup
 - https://www.npmjs.com/package/jp-city-lookup
 - https://www.npmjs.com/package/jp-zipcode-lookup
 
-### The MIT License (MIT)
+## MIT LICENSE
 
 Copyright (c) 2018-2023 Yusuke Kawasaki
 
