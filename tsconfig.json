@@ -16,6 +16,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": false,
     "strictNullChecks": true,
-    "target": "ES2018"
+    "target": "ES2021"
   }
 }

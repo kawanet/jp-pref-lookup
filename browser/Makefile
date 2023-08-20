@@ -6,6 +6,7 @@ ALL=\
 
 all: $(ALL)
 
+# ES5 - CommonJS for browsers
 ../dist/jp-pref-lookup.min.js: ../build/bundle.js
 	mkdir -p ../dist
 	../node_modules/.bin/terser -c -m --ecma 5 -o $@ $<
@@ -28,9 +29,11 @@ test: ../build/test.js
 	../node_modules/.bin/browserify -o $@ ../test/*.js \
 		-t [ browserify-sed 's#require\("../"\)#require("../browser/import")#mg;' ]
 
+# ES5 - CommonJS
 ../build/es5/%.js: ../lib/%.ts
 	../node_modules/.bin/tsc -p ../tsconfig-es5.json
 
+# ES2021 - CommonJS
 ../test/%.js: ../test/%.ts
 	../node_modules/.bin/tsc -p ../tsconfig.json
 
