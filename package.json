@@ -20,8 +20,8 @@
     ".": {
       "require": "./lib/jp-pref-lookup.js",
       "import": {
-        "default": "./dist/jp-pref-lookup.mjs",
-        "types": "./typings/jp-pref-lookup.d.ts"
+        "types": "./typings/jp-pref-lookup.d.ts",
+        "default": "./dist/jp-pref-lookup.mjs"
       }
     }
   },
